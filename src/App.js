@@ -14,9 +14,6 @@ class App extends Component {
   }
 
   inputOnChange(event) {
-    if (!event.target.value) {
-      return;
-    }
     this.setState({ search: event.target.value.toLowerCase() });
     this.fetchPeople(event.target.value.toLowerCase());
   }
@@ -28,28 +25,13 @@ class App extends Component {
   fetchPeople(person) {
     const apiURL = `https://swapi.co/api/people/?search=${person}`;
     axios.get(apiURL).then(response => {
-      const { responseURL } = response.request;
-      const responseURLString = decodeURIComponent(
-        responseURL.split("=")[1]
-      ).toLowerCase();
-
-      // only update state if search query is still the same as query of response
-      if (responseURLString === this.state.search) {
+      if (person === this.state.search) {
         this.setState({ people: response.data.results });
-        console.log("true");
-        console.log(this.state.people);
       }
-
-      console.log(
-        `movie : ${person} search : ${
-          this.state.search
-        } responseURL : ${responseURLString}`
-      );
 
       // if search is empty clear results
       if (this.state.search === "") {
-        this.setState({ movies: [] });
-        console.log("if search is blank");
+        this.setState({ people: [] });
       }
     });
   }
