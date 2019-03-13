@@ -31,8 +31,8 @@ class App extends Component {
   }
 
   fetchPeople(searchInput) {
-    const apiURL = `https://swapi.co/api/people/?search=${searchInput}`;
-    fetch(apiURL)
+    const apiUrl = `https://swapi.co/api/people/?search=${searchInput}`;
+    fetch(apiUrl)
       .then(res => res.json())
       .then(json => {
         console.log(json);
@@ -47,16 +47,16 @@ class App extends Component {
       });
   }
 
-  fetchVehicles(Urls) {
-    Promise.all(Urls.map(Url => fetch(Url).then(res => res.json()))).then(
+  fetchVehicles(urls) {
+    Promise.all(urls.map(url => fetch(url).then(res => res.json()))).then(
       json => {
         this.setState({ vehicles: json });
       }
     );
   }
 
-  fetchFilms(Urls) {
-    Promise.all(Urls.map(Url => fetch(Url).then(res => res.json()))).then(
+  fetchFilms(urls) {
+    Promise.all(urls.map(url => fetch(url).then(res => res.json()))).then(
       json => {
         this.setState({ films: json });
       }
