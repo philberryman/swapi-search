@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Downshift from "downshift";
-import axios from "axios";
+import Search from "./Search";
 import Person from "./Person";
 import Films from "./Films";
 import HomeWorld from "./HomeWorld";
@@ -21,6 +20,7 @@ class App extends Component {
     this.fetchPeople = this.fetchPeople.bind(this);
     this.fetchVehicles = this.fetchVehicles.bind(this);
     this.fetchFilms = this.fetchFilms.bind(this);
+    this.selectPerson = this.selectPerson.bind(this);
     this.inputOnChange = this.inputOnChange.bind(this);
   }
 
@@ -30,22 +30,21 @@ class App extends Component {
     this.fetchPeople(event.target.value.toLowerCase());
   }
 
-  // downshiftOnChange(selectedPerson) {
-  //   alert(`your favourite person is ${selectedPerson}`);
-  // }
-  // method to fetch the people from SWAPI
   fetchPeople(searchInput) {
     const apiURL = `https://swapi.co/api/people/?search=${searchInput}`;
-    axios.get(apiURL).then(response => {
-      if (searchInput === this.state.search) {
-        this.setState({ people: response.data.results });
-        console.log(response);
-      }
-      // if search is empty clear results
-      if (this.state.search === "") {
-        this.setState({ people: [] });
-      }
-    });
+    fetch(apiURL)
+      .then(res => res.json())
+      .then(json => {
+        console.log(json);
+        if (searchInput === this.state.search) {
+          this.setState({ people: json.results });
+          console.log(json);
+        }
+        // if search is empty clear results
+        if (this.state.search === "") {
+          this.setState({ people: [] });
+        }
+      });
   }
 
   fetchVehicles(Urls) {
@@ -74,56 +73,14 @@ class App extends Component {
     return (
       <div className="App">
         <Heading>Star Wars - People Search</Heading>
-        <Downshift
-          onChange={selection => this.selectPerson(selection)}
-          itemToString={item => (item ? item.name : "")}
-        >
-          {({
-            getInputProps,
-            getItemProps,
-            getLabelProps,
-            isOpen,
-            inputValue,
-            highlightedIndex,
-            selectedItem,
-          }) => (
-            <div>
-              <label {...getLabelProps()}>Enter a name</label>
-              <input {...getInputProps({ onChange: this.inputOnChange })} />
-              {isOpen ? (
-                <div>
-                  {this.state.people
-                    .filter(
-                      item =>
-                        !inputValue ||
-                        item.name
-                          .toLowerCase()
-                          .includes(inputValue.toLowerCase())
-                    )
-                    .map((item, index) => (
-                      <div
-                        {...getItemProps({
-                          key: item.name,
-                          index,
-                          item,
-                          style: {
-                            backgroundColor:
-                              highlightedIndex === index
-                                ? "lightgray"
-                                : "white",
-                            fontWeight:
-                              selectedItem === item ? "bold" : "normal",
-                          },
-                        })}
-                      >
-                        {item.name}
-                      </div>
-                    ))}
-                </div>
-              ) : null}
-            </div>
-          )}
-        </Downshift>
+        <Search
+          people={this.state.people}
+          selectPerson={this.selectPerson}
+          inputOnChange={this.inputOnChange}
+          label="Select your favourite book"
+          name="book"
+          placeholder="Search your favourite book"
+        />
         {this.state.selectedPerson.films && (
           <Cards>
             <Person selectedPerson={this.state.selectedPerson} />

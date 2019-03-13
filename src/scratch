@@ -1,0 +1,56 @@
+import React, { Component } from "react";
+import Downshift from "downshift";
+
+export default class Search extends Component {
+  render() {
+    console.log("SEACH COMPONENT");
+    console.log(this.props.selectPerson);
+    return (
+      <Downshift
+        onChange={selection => this.props.selectPerson(selection)}
+        itemToString={item => (item ? item.name : "")}
+      >
+        {({
+          getInputProps,
+          getItemProps,
+          getLabelProps,
+          isOpen,
+          inputValue,
+          highlightedIndex,
+          selectedItem,
+        }) => (
+          <div>
+            <label {...getLabelProps()}>Enter a name</label>
+            <input {...getInputProps({ onChange: this.props.inputOnChange })} />
+            {isOpen ? (
+              <div>
+                {this.props.people
+                  .filter(
+                    item =>
+                      !inputValue ||
+                      item.name.toLowerCase().includes(inputValue.toLowerCase())
+                  )
+                  .map((item, index) => (
+                    <div
+                      {...getItemProps({
+                        key: item.name,
+                        index,
+                        item,
+                        style: {
+                          backgroundColor:
+                            highlightedIndex === index ? "lightgray" : "white",
+                          fontWeight: selectedItem === item ? "bold" : "normal",
+                        },
+                      })}
+                    >
+                      {item.name}
+                    </div>
+                  ))}
+              </div>
+            ) : null}
+          </div>
+        )}
+      </Downshift>
+    );
+  }
+}

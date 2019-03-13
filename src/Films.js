@@ -8,7 +8,9 @@ function Films({ films }) {
     <Card>
       <ul>
         {films.map(film => (
-          <li>{film.title}</li>
+          <li>
+            {film.title} -- {film.release_date}
+          </li>
         ))}
       </ul>
     </Card>
