@@ -1,14 +1,15 @@
 import React from "react";
 import { Card } from "./style.js";
 
-const HomeWorld = person => {
-  const { name, birth_year, skin_color } = person;
+const HomeWorld = ({ homeWorld }) => {
+  console.log(homeWorld);
+  const { name } = homeWorld;
   return (
     <Card>
       <ul>
         <li>{name}</li>
-        <li>{birth_year}</li>
-        <li>{skin_color}</li>
+        {/* <li>{birth_year}</li>
+        <li>{skin_color}</li> */}
       </ul>
     </Card>
   );

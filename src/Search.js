@@ -1,6 +1,6 @@
 import React from "react";
 import Downshift from "downshift";
-import { Results } from "./style.js";
+import { Results, SearchInput } from "./style.js";
 
 export default ({ people, selectPerson, name, inputOnChange }) => {
   return (
@@ -20,7 +20,7 @@ export default ({ people, selectPerson, name, inputOnChange }) => {
         }) => (
           <div>
             <label {...getLabelProps()}>Enter a name</label>
-            <input
+            <SearchInput
               {...getInputProps({
                 onChange: inputOnChange,
               })}

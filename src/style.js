@@ -21,7 +21,7 @@ export const Card = styled.div`
 `;
 
 export const Heading = styled.h1`
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 2rem;
   color: #fbe122;
 `;
@@ -38,4 +38,14 @@ export const Wrapper = styled.div`
 export const Results = styled.div`
   position: absolute;
   z-index: 9999;
+  color: #40c1ac;
+  font-family: "Orbitron", sans-serif;
+`;
+
+export const SearchLabel = styled.input`
+  font-weight: 200;
+`;
+
+export const SearchInput = styled.input`
+  margin: 0 20px;
 `;

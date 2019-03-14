@@ -1,14 +1,13 @@
 import React from "react";
 import { Card } from "./style.js";
 
-const Vehicles = person => {
-  const { name, birth_year, skin_color } = person;
+const Vehicles = ({ vehicles }) => {
   return (
     <Card>
       <ul>
-        <li>{name}</li>
-        <li>{birth_year}</li>
-        <li>{skin_color}</li>
+        {vehicles.map(vehicle => (
+          <li key={vehicle.name}>{vehicle.name}</li>
+        ))}
       </ul>
     </Card>
   );

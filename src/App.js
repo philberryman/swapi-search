@@ -13,30 +13,41 @@ const App = () => {
   const [vehicles, setVehicles] = useState([]);
   const [films, setFilms] = useState([]);
   const [homeWorld, setHomeWorld] = useState([]);
+  const [searchCache, setSearchCache] = useState({});
 
   const inputOnChange = event => {
     fetchPeople(event.target.value.toLowerCase());
   };
 
   const fetchPeople = searchInput => {
-    const apiUrl = `https://swapi.co/api/people/?search=${searchInput}`;
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then(json => {
-        if (searchInput) {
-          setPeople(json.results);
-        }
-        // if search is empty clear results
-        if (searchInput === "") {
-          setPeople([]);
-        }
-      });
+    if (searchInput === "") {
+      setPeople([]);
+    } else if (searchCache[searchInput]) {
+      console.log("exists");
+      console.log(searchInput);
+      setPeople(searchCache[searchInput]);
+    } else {
+      console.log("does NOT exist");
+      console.log(searchInput);
+      const apiUrl = `https://swapi.co/api/people/?search=${searchInput}`;
+      fetch(apiUrl)
+        .then(res => res.json())
+        .then(json => {
+          if (searchInput) {
+            setPeople(json.results);
+            const newResults = { [searchInput]: json.results };
+            const newSearchCache = Object.assign({}, searchCache, newResults);
+            setSearchCache(newSearchCache);
+          }
+          // if search is empty clear results
+        });
+    }
   };
 
   const fetchVehicles = urls => {
     Promise.all(urls.map(url => fetch(url).then(res => res.json()))).then(
       json => {
-        setVehicles(json.results);
+        setVehicles(json);
       }
     );
   };
@@ -53,7 +64,7 @@ const App = () => {
     fetch(url)
       .then(res => res.json())
       .then(json => {
-        setHomeWorld(json.results);
+        setHomeWorld(json);
       });
   };
 
