@@ -3,7 +3,6 @@ import Downshift from "downshift";
 import { Results } from "./style.js";
 
 export default ({ people, selectPerson, name, inputOnChange }) => {
-  console.log(people);
   return (
     <Results>
       <Downshift
@@ -21,7 +20,11 @@ export default ({ people, selectPerson, name, inputOnChange }) => {
         }) => (
           <div>
             <label {...getLabelProps()}>Enter a name</label>
-            <input {...getInputProps({ onChange: inputOnChange })} />
+            <input
+              {...getInputProps({
+                onChange: inputOnChange,
+              })}
+            />
             {isOpen ? (
               <div>
                 {people
