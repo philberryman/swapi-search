@@ -1,27 +1,29 @@
 import styled from "styled-components";
 
 export const Cards = styled.div`
-  display: grid;
-  grid-gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 100%;
   color: #444;
-  position: absolute;
-  margin-top: 20px;
-  z-index: -1;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 25% 25% 25% 25%;
-  }
+  position: relative;
+  top: 30px;
 `;
 
 export const Card = styled.div`
   background-color: #444;
   color: #fff;
+  border: 2px solid #C8102E;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
+  margin:5px
   font-size: 50%;
   position: relative;
   top: 30px;
-  z-index: -1;
+  flex-grow: 1;
+  min-height:100px;
+  min-width:180px;
+
 `;
 
 export const Heading = styled.h1`
@@ -31,12 +33,36 @@ export const Heading = styled.h1`
 `;
 
 export const Wrapper = styled.div`
-  width=300px;
   border: 5px solid #fbe122;
   border-radius: 5px;
-  padding: 20px;
   margin: 20px;
-  min-height:300px;
+  padding: 20px;
+  min-height: 400px;
+  display: block;
+  justify-content: center;
+  align-content: center;
+
+  @media (min-width: 920px) {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 850px;
+  }
+
+  @media (min-width: 480px) and (max-width: 920px) {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 440px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  @media max-width: 480px {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 400px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 `;
 
 export const SearchBox = styled.div`
