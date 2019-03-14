@@ -5,7 +5,7 @@ import Films from "./Films";
 import HomeWorld from "./HomeWorld";
 import Vehicles from "./Vehicles";
 
-import { Heading, Cards } from "./style.js";
+import { Heading, Cards, Wrapper } from "./style.js";
 
 class App extends Component {
   constructor(props) {
@@ -20,12 +20,12 @@ class App extends Component {
     this.fetchPeople = this.fetchPeople.bind(this);
     this.fetchVehicles = this.fetchVehicles.bind(this);
     this.fetchFilms = this.fetchFilms.bind(this);
+    this.fetchHomeWorld = this.fetchHomeWorld.bind(this);
     this.selectPerson = this.selectPerson.bind(this);
     this.inputOnChange = this.inputOnChange.bind(this);
   }
 
   inputOnChange(event) {
-    console.log("input on change");
     this.setState({ search: event.target.value.toLowerCase() });
     this.fetchPeople(event.target.value.toLowerCase());
   }
@@ -35,10 +35,8 @@ class App extends Component {
     fetch(apiUrl)
       .then(res => res.json())
       .then(json => {
-        console.log(json);
         if (searchInput === this.state.search) {
           this.setState({ people: json.results });
-          console.log(json);
         }
         // if search is empty clear results
         if (this.state.search === "") {
@@ -63,8 +61,17 @@ class App extends Component {
     );
   }
 
+  fetchHomeWorld(url) {
+    fetch(url)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ homeWorld: json });
+      });
+  }
+
   selectPerson(person) {
     this.setState({ selectedPerson: person });
+    this.fetchHomeWorld(person.homeworld);
     this.fetchVehicles(person.vehicles);
     this.fetchFilms(person.films);
   }
@@ -72,23 +79,25 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Heading>Star Wars - People Search</Heading>
-        <Search
-          people={this.state.people}
-          selectPerson={this.selectPerson}
-          inputOnChange={this.inputOnChange}
-          label="Select your favourite book"
-          name="book"
-          placeholder="Search your favourite book"
-        />
-        {this.state.selectedPerson.films && (
-          <Cards>
-            <Person selectedPerson={this.state.selectedPerson} />
-            <Films films={this.state.films} />
-            <HomeWorld selectedPerson={this.state.selectedPerson} />
-            <Vehicles vehicles={this.state.selectedPerson.vehicles} />
-          </Cards>
-        )}
+        <Wrapper>
+          <Heading>Star Wars - People Search</Heading>
+          <Search
+            people={this.state.people}
+            selectPerson={this.selectPerson}
+            inputOnChange={this.inputOnChange}
+            label="Select your favourite book"
+            name="book"
+            placeholder="Search your favourite book"
+          />
+          {this.state.selectedPerson.films && (
+            <Cards>
+              <Person selectedPerson={this.state.selectedPerson} />
+              <Films films={this.state.films} />
+              <HomeWorld selectedPerson={this.state.selectedPerson} />
+              <Vehicles vehicles={this.state.selectedPerson.vehicles} />
+            </Cards>
+          )}
+        </Wrapper>
       </div>
     );
   }
