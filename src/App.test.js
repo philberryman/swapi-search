@@ -55,7 +55,7 @@ test("fetches data from server when server returns a successful response", done 
   });
   jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
 
-  const { getByLabelText, getByText } = render(<App />);
+  const { getByLabelText } = render(<App />);
   const input = getByLabelText(/Enter a name/i);
   const inputText = "Luke";
   fireEvent.change(input, { target: { value: inputText } });
@@ -82,6 +82,30 @@ test("results show in drop down when user searches", done => {
   const input = getByLabelText(/Enter a name/i);
   const inputText = "Luke";
   fireEvent.change(input, { target: { value: inputText } });
+
+  process.nextTick(() => {
+    const results = getByText("Luke Skywalker");
+    expect(results).toBeDefined();
+    global.fetch.mockClear();
+    done();
+  });
+});
+
+test("fetch is not called a second time when search is the same (caching)", done => {
+  const mockJsonPromise = Promise.resolve(mockSuccessResponse);
+  const mockFetchPromise = Promise.resolve({
+    json: () => mockJsonPromise,
+  });
+  jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
+
+  const { getByLabelText, getByText } = render(<App />);
+  const input = getByLabelText(/Enter a name/i);
+  const inputText = "Luke";
+
+  fireEvent.change(input, { target: { value: inputText } });
+  fireEvent.change(input, { target: { value: inputText } });
+
+  expect(global.fetch).toHaveBeenCalledTimes(1);
 
   process.nextTick(() => {
     const results = getByText("Luke Skywalker");

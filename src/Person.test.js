@@ -9,8 +9,8 @@ const person = {
   skin_color: "blue",
 };
 
-test('renders autocomplete list input with a label "Enter a name"', () => {
-  const { getByText } = render(<Person person={person} />);
+test('renders autocomplete list input with a label "Enter a name :"', () => {
+  const { getByText } = render(<Person {...person} />);
   const name = getByText(/Luke/i);
   expect(name).toHaveTextContent("Luke Skywalker");
 });

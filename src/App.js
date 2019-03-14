@@ -4,6 +4,7 @@ import Person from "./Person";
 import Films from "./Films";
 import HomeWorld from "./HomeWorld";
 import Vehicles from "./Vehicles";
+import { fetchFromArrayOfUrls, fetchFromUrl } from "./helpers/fetch";
 
 import { Heading, Cards, Wrapper } from "./style.js";
 
@@ -15,20 +16,13 @@ const App = () => {
   const [homeWorld, setHomeWorld] = useState([]);
   const [searchCache, setSearchCache] = useState({});
 
-  const inputOnChange = event => {
-    fetchPeople(event.target.value.toLowerCase());
-  };
-
+  const inputOnChange = event => fetchPeople(event.target.value.toLowerCase());
   const fetchPeople = searchInput => {
     if (searchInput === "") {
       setPeople([]);
     } else if (searchCache[searchInput]) {
-      console.log("exists");
-      console.log(searchInput);
       setPeople(searchCache[searchInput]);
     } else {
-      console.log("does NOT exist");
-      console.log(searchInput);
       const apiUrl = `https://swapi.co/api/people/?search=${searchInput}`;
       fetch(apiUrl)
         .then(res => res.json())
@@ -39,41 +33,15 @@ const App = () => {
             const newSearchCache = Object.assign({}, searchCache, newResults);
             setSearchCache(newSearchCache);
           }
-          // if search is empty clear results
         });
     }
   };
 
-  const fetchVehicles = urls => {
-    Promise.all(urls.map(url => fetch(url).then(res => res.json()))).then(
-      json => {
-        setVehicles(json);
-      }
-    );
-  };
-
-  const fetchFilms = urls => {
-    Promise.all(urls.map(url => fetch(url).then(res => res.json()))).then(
-      json => {
-        setFilms(json);
-      }
-    );
-  };
-
-  const fetchHomeWorld = url => {
-    fetch(url)
-      .then(res => res.json())
-      .then(json => {
-        setHomeWorld(json);
-      });
-  };
-
   const selectPerson = person => {
-    console.log(person);
     setPerson(person);
-    fetchHomeWorld(person.homeworld);
-    fetchVehicles(person.vehicles);
-    fetchFilms(person.films);
+    fetchFromUrl(person.homeworld).then(data => setHomeWorld(data));
+    fetchFromArrayOfUrls(person.vehicles).then(data => setVehicles(data));
+    fetchFromArrayOfUrls(person.films).then(data => setFilms(data));
   };
 
   return (
@@ -90,9 +58,9 @@ const App = () => {
         />
         {person.films && (
           <Cards>
-            <Person person={person} />
+            <Person {...person} />
             <Films films={films} />
-            <HomeWorld homeWorld={homeWorld} />
+            <HomeWorld {...homeWorld} />
             <Vehicles vehicles={vehicles} />
           </Cards>
         )}

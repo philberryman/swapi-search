@@ -1,18 +1,14 @@
 import React from "react";
 import { Card } from "./style.js";
 
-const HomeWorld = ({ homeWorld }) => {
-  console.log(homeWorld);
-  const { name } = homeWorld;
-  return (
-    <Card>
-      <ul>
-        <li>{name}</li>
-        {/* <li>{birth_year}</li>
+const HomeWorld = ({ name }) => (
+  <Card>
+    <ul>
+      <li>{name}</li>
+      {/* <li>{birth_year}</li>
         <li>{skin_color}</li> */}
-      </ul>
-    </Card>
-  );
-};
+    </ul>
+  </Card>
+);
 
 export default HomeWorld;

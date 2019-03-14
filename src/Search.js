@@ -1,10 +1,10 @@
 import React from "react";
 import Downshift from "downshift";
-import { Results, SearchInput } from "./style.js";
+import { SearchBox, SearchInput, Result } from "./style.js";
 
 export default ({ people, selectPerson, name, inputOnChange }) => {
   return (
-    <Results>
+    <SearchBox>
       <Downshift
         onChange={selection => selectPerson(selection)}
         itemToString={item => (item ? item.name : "")}
@@ -19,7 +19,7 @@ export default ({ people, selectPerson, name, inputOnChange }) => {
           selectedItem,
         }) => (
           <div>
-            <label {...getLabelProps()}>Enter a name</label>
+            <label {...getLabelProps()}>Enter a name :</label>
             <SearchInput
               {...getInputProps({
                 onChange: inputOnChange,
@@ -34,7 +34,7 @@ export default ({ people, selectPerson, name, inputOnChange }) => {
                       item.name.toLowerCase().includes(inputValue.toLowerCase())
                   )
                   .map((item, index) => (
-                    <div
+                    <Result
                       {...getItemProps({
                         key: item.name,
                         index,
@@ -47,13 +47,13 @@ export default ({ people, selectPerson, name, inputOnChange }) => {
                       })}
                     >
                       {item.name}
-                    </div>
+                    </Result>
                   ))}
               </div>
             ) : null}
           </div>
         )}
       </Downshift>
-    </Results>
+    </SearchBox>
   );
 };
