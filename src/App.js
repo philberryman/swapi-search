@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Search from "./Search";
-import Person from "./Person";
-import Films from "./Films";
-import HomeWorld from "./HomeWorld";
-import Vehicles from "./Vehicles";
+import { Search } from "./Search";
+import { Person } from "./Person";
+import { Films } from "./Films";
+import { HomeWorld } from "./HomeWorld";
+import { Vehicles } from "./Vehicles";
 import { fetchFromArrayOfUrls, fetchFromUrl } from "./helpers/fetch";
 
 import { Heading, Cards, Wrapper } from "./style.js";

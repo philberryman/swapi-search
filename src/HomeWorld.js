@@ -1,14 +1,38 @@
 import React from "react";
-import { Card } from "./style.js";
+import PropTypes from "prop-types";
+import { Card, CardHeader, Unordered } from "./style.js";
 
-const HomeWorld = ({ name }) => (
+export const HomeWorld = ({
+  name,
+  population,
+  gravity,
+  diameter,
+  terrain,
+  orbital_period,
+  rotation_period,
+  climate,
+}) => (
   <Card>
-    <ul>
-      <li>{name}</li>
-      {/* <li>{birth_year}</li>
-        <li>{skin_color}</li> */}
-    </ul>
+    <CardHeader>ABOUT HOMEWORLD</CardHeader>
+    <Unordered>
+      <li>NAME : {name}</li>
+      <li>POPULATION : {population}</li>
+      <li>GRAVITY : {gravity}</li>
+      <li>DIAMETER : {diameter}</li>
+      <li>TERRAIN : {terrain}</li>
+      <li>CLIMATE : {climate}</li>
+      <li>ROTATION PERIOD : {rotation_period}</li>
+      <li>ORBITAL PERIOD : {orbital_period}</li>
+    </Unordered>
   </Card>
 );
 
-export default HomeWorld;
+HomeWorld.propTypes = {
+  name: PropTypes.string,
+  population: PropTypes.string,
+  gravity: PropTypes.string,
+  diameter: PropTypes.string,
+  terrain: PropTypes.string,
+  rotation_period: PropTypes.string,
+  orbital_period: PropTypes.string,
+};

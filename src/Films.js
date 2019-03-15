@@ -1,20 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { Card, CardHeader, Unordered } from "./style.js";
 
-import { Card } from "./style.js";
+export const Films = ({ films }) => (
+  <Card>
+    <CardHeader>APPEARS IN</CardHeader>
+    <Unordered>
+      {films.map(film => (
+        <li key={film.title}>
+          {film.title} ({film.release_date} - {film.director})
+        </li>
+      ))}
+    </Unordered>
+  </Card>
+);
 
-const Films = ({ films }) => {
-  console.log(films);
-  return (
-    <Card>
-      <ul>
-        {films.map(film => (
-          <li key={film.title}>
-            {film.title} -- {film.release_date}
-          </li>
-        ))}
-      </ul>
-    </Card>
-  );
+Films.propTypes = {
+  films: PropTypes.array,
 };
-
-export default Films;

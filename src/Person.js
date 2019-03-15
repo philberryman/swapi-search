@@ -1,14 +1,36 @@
 import React from "react";
-import { Card, Unordered } from "./style.js";
+import PropTypes from "prop-types";
+import { Card, CardHeader, Unordered } from "./style.js";
 
-const Person = ({ name, birth_year, skin_color }) => (
+export const Person = ({
+  name,
+  height,
+  mass,
+  hair_color,
+  skin_color,
+  eye_color,
+  gender,
+}) => (
   <Card>
+    <CardHeader>CORE FACTS</CardHeader>
     <Unordered>
-      <li>{name}</li>
-      <li>{birth_year}</li>
-      <li>{skin_color}</li>
+      <li>NAME : {name}</li>
+      <li>HEIGHT : {height}</li>
+      <li>MASS : {mass}</li>
+      <li>HAIR COLOR : {hair_color}</li>
+      <li>SKIN COLOR : {skin_color}</li>
+      <li>EYE COLOR : {eye_color}</li>
+      <li>GENDER : {gender}</li>
     </Unordered>
   </Card>
 );
 
-export default Person;
+Person.propTypes = {
+  name: PropTypes.string,
+  height: PropTypes.string,
+  mass: PropTypes.string,
+  hair_color: PropTypes.string,
+  skin_color: PropTypes.string,
+  eye_color: PropTypes.string,
+  gender: PropTypes.string,
+};

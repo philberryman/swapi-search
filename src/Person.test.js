@@ -1,7 +1,7 @@
 import "jest-dom/extend-expect";
 import React from "react";
 import { render } from "react-testing-library";
-import Person from "./Person";
+import { Person } from "./Person";
 
 const person = {
   name: "Luke Skywalker",
@@ -9,7 +9,7 @@ const person = {
   skin_color: "blue",
 };
 
-test('renders autocomplete list input with a label "Enter a name :"', () => {
+test("Renders Person component with Luke Skywalker object", () => {
   const { getByText } = render(<Person {...person} />);
   const name = getByText(/Luke/i);
   expect(name).toHaveTextContent("Luke Skywalker");

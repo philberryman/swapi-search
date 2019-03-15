@@ -1,16 +1,18 @@
 import React from "react";
-import { Card } from "./style.js";
+import PropTypes from "prop-types";
+import { Card, CardHeader, Unordered } from "./style.js";
 
-const Vehicles = ({ vehicles }) => {
-  return (
-    <Card>
-      <ul>
-        {vehicles.map(vehicle => (
-          <li key={vehicle.name}>{vehicle.name}</li>
-        ))}
-      </ul>
-    </Card>
-  );
+export const Vehicles = ({ vehicles }) => (
+  <Card>
+    <CardHeader>VEHICLES</CardHeader>
+    <Unordered>
+      {vehicles.map(vehicle => (
+        <li key={vehicle.name}>{vehicle.name}</li>
+      ))}
+    </Unordered>
+  </Card>
+);
+
+Vehicles.propTypes = {
+  vehicles: PropTypes.array,
 };
-
-export default Vehicles;
