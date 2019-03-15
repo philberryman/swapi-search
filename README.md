@@ -2,7 +2,7 @@
 
 A unique, fun and interesting way of finding out about your favourite Star Wars character using the Star Wars API (SWAPI)
 
-### To run
+### To Run
 
 Clone the repo with either:
 
@@ -29,14 +29,14 @@ This should open a browser window with "Star Wars - People Search". The Force Aw
 
 Start typing a name of a Star Wars charachter (be as obscure as you want - they're all in there).
 
-Click on a result from the autocompleted drop down will bring up the information about that charachter.
+Clicking on a result from the autocompleted drop down will bring up the information about that charachter.
 
-### To test
+### To Test
 
 `yarn test --verbose`
 `yarn coverage`
 
-### Warnings in test
+### Warnings In Test
 
 `Warning: An update to App inside a test was not wrapped in act(...).`
 
@@ -56,7 +56,7 @@ Jest
 React Testing Library
 Prop Types
 
-### Improvements needed
+### Future Improvements
 
 - Creating a GraphQL backend would reduce the amount of front-end API requests needed.
 - Styling is a long way from perfect. Info cards are falling out of the yellow border created by the Wrapper component.
