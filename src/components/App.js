@@ -5,7 +5,6 @@ import { Films } from "./Films";
 import { HomeWorld } from "./HomeWorld";
 import { Vehicles } from "./Vehicles";
 
-import { handleErrors } from "../helpers/errors.js";
 import { fetchFromArrayOfUrls, fetchFromUrl } from "../helpers/fetch";
 
 import { Heading, Cards, Wrapper } from "../styles/style.js";
@@ -27,7 +26,6 @@ const App = () => {
     } else {
       const apiUrl = `https://swapi.co/api/people/?search=${searchInput}`;
       fetch(apiUrl)
-        .then(handleErrors)
         .then(res => res.json())
         .then(json => {
           if (searchInput) {
@@ -44,15 +42,12 @@ const App = () => {
   const selectPerson = person => {
     setPerson(person);
     fetchFromUrl(person.homeworld)
-      .then(handleErrors)
       .then(data => setHomeWorld(data))
       .catch(error => console.log(error));
     fetchFromArrayOfUrls(person.vehicles)
-      .then(handleErrors)
       .then(data => setVehicles(data))
       .catch(error => console.log(error));
     fetchFromArrayOfUrls(person.films)
-      .then(handleErrors)
       .then(data => setFilms(data))
       .catch(error => console.log(error));
   };
