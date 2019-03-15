@@ -4,9 +4,9 @@ import { Person } from "./Person";
 import { Films } from "./Films";
 import { HomeWorld } from "./HomeWorld";
 import { Vehicles } from "./Vehicles";
-import { fetchFromArrayOfUrls, fetchFromUrl } from "./helpers/fetch";
+import { fetchFromArrayOfUrls, fetchFromUrl } from "../helpers/fetch";
 
-import { Heading, Cards, Wrapper } from "./style.js";
+import { Heading, Cards, Wrapper } from "../styles/style.js";
 
 const App = () => {
   const [people, setPeople] = useState([]);

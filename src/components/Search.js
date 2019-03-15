@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Downshift from "downshift";
-import { SearchBox, SearchInput, Result } from "./style.js";
+import { SearchBox, SearchInput, Result } from "../styles/style.js";
 
 export const Search = ({ people, selectPerson, name, inputOnChange }) => (
   <SearchBox>
