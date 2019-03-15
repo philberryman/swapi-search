@@ -53,12 +53,12 @@ As the warning does not stop tests from running and passing I've decided to igno
 
 ### Technologies
 
-React (16.8.4)
-Downshift
-Styled Components
-Jest
-React Testing Library
-Prop Types
+- React (16.8.4) -- needed for the slightly unnecessary use of Hooks
+- Downshift
+- Styled Components
+- Jest
+- React Testing Library
+- Prop Types
 
 ### Future Improvements
 
