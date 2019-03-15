@@ -4,8 +4,23 @@ A unique, fun and interesting way of finding out about your favourite Star Wars 
 
 ### To run
 
+Clone the repo with either:
+
+SSH:
+
 ```
-git clone ...
+git@github.com:philberryman/swapi-search.git
+```
+
+or HTTPS:
+
+```
+https://github.com/philberryman/swapi-search.git
+```
+
+Install and run using Yarn
+
+```
 yarn install
 yarn start
 ```
