@@ -33,7 +33,10 @@ Clicking on a result from the autocompleted drop down will bring up the informat
 
 ### To Test
 
+Run tests
 `yarn test --verbose`
+
+View coverage report
 `yarn coverage`
 
 ### Warnings In Test
