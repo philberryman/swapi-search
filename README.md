@@ -62,3 +62,4 @@ Prop Types
 *Styling is a long way from perfect. Info cards are falling out of the yellow border created by the Wrapper component.
 *Some odd behaviour is sometimes caused by the order responses come back from the API. Not all responses are being cached either for some reason.
 *The warnings mentioned above when tests are run. It seems like these aren't a real problem and would probably not exist if Hooks weren't being used (although more investigation is probably needed here).
+\*Better test coverage. Some of the tests are pretty low on detail (only testing a single property for each Film, Person, HomeWorld, Vehicle). Only one piece of the API has been mocked (for search).
