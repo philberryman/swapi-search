@@ -38,7 +38,7 @@ Click on a result from the autocompleted drop down will bring up the information
 
 ### Warnings in test
 
-``Warning: An update to App inside a test was not wrapped in act(...).```
+`Warning: An update to App inside a test was not wrapped in act(...).`
 
 This is a known issue being dealt with by both the React team and the maintainers of React Testing Library.
 
@@ -58,8 +58,8 @@ Prop Types
 
 ### Improvements needed
 
-*Creating a GraphQL backend would reduce the amount of front-end API requests needed.
-*Styling is a long way from perfect. Info cards are falling out of the yellow border created by the Wrapper component.
-*Some odd behaviour is sometimes caused by the order responses come back from the API. Not all responses are being cached either for some reason.
-*The warnings mentioned above when tests are run. It seems like these aren't a real problem and would probably not exist if Hooks weren't being used (although more investigation is probably needed here).
-\*Better test coverage. Some of the tests are pretty low on detail (only testing a single property for each Film, Person, HomeWorld, Vehicle). Only one piece of the API has been mocked (for search).
+- Creating a GraphQL backend would reduce the amount of front-end API requests needed.
+- Styling is a long way from perfect. Info cards are falling out of the yellow border created by the Wrapper component.
+- Some odd behaviour is sometimes caused by the order responses come back from the API. Not all responses are being cached either for some reason.
+- Better test coverage. Some of the tests are pretty low on detail (only testing a single property for each Film, Person, HomeWorld, Vehicle). Only one piece of the API has been mocked (for search).
+- The warnings mentioned above when tests are run.It seems like these aren't a real problem and would probably not exist if Hooks weren't being used (although more investigation is probably needed here).
