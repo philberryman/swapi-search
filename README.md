@@ -55,3 +55,10 @@ Styled Components
 Jest
 React Testing Library
 Prop Types
+
+### Improvements needed
+
+*Creating a GraphQL backend would reduce the amount of front-end API requests needed.
+*Styling is a long way from perfect. Info cards are falling out of the yellow border created by the Wrapper component.
+*Some odd behaviour is sometimes caused by the order responses come back from the API. Not all responses are being cached either for some reason.
+*The warnings mentioned above when tests are run. It seems like these aren't a real problem and would probably not exist if Hooks weren't being used (although more investigation is probably needed here).
